@@ -11,7 +11,7 @@ $sql = "DELETE FROM purchases WHERE purchase_id = '" . $id . "'";
 
 // if this query finds an entry with that 'id', log that it is stored and we have deleted it or that it doesn't exist
 if(mysqli_query($link, $sql)){
-    print("Stored");
+    print("Deleted");
 } else {
     print("Failed");
 }

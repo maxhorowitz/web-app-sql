@@ -2,6 +2,8 @@
 
 require_once 'connect.php';
 
+print("GOT THERE");
+
 $category = $_REQUEST['cat'];
 $details = $_REQUEST['details'];
 $date = $_REQUEST['purchasedate'];
@@ -13,6 +15,7 @@ $sql .= "('" . $details . "',";
 $sql .= "('" . $date . "',";
 $sql .= "('" . $value . "',";
 
+// attempts to run the query at the predefined link, prints successful or not
 if(mysqli_query($link, $sql)){
     print("Stored");
 } else {

@@ -2,7 +2,7 @@
 
 $user = 'root';
 $password = 'root';
-$db = 'goals';
+$db = 'purchases';
 $host = 'localhost';
 $port = 8889;
 
