@@ -11,9 +11,9 @@
     <body>
         <div id="container">
             <!-- header -->
-            <h1>New Purchase</h1>
+            <h2>New Purchase</h2>
             <!-- form -->
-            <form action="insert_purchase.php" method="post">
+            <form action="insert_purchase.php" method="post" autocomplete="off">
                 <!-- label for dropdown -->
                 <label for="cat">Category</label>
                 <!-- dropdown -->
@@ -33,12 +33,12 @@
                 <!-- label for date of purchase -->
                 <label for="purchasedate">Date of Purchase</label>
                 <!-- input of type date -->
-                <input type="date" name="purchasedate" id="purchasedate"/>
+                <input type="date" name="purchasedate" id="purchasedate" value="2000-01-01"/>
 
                 <!-- label for amount -->
                 <label for="value">Amount</label>
                 <!-- input of type number -->
-                <input type="number" name="value" id="value"/>
+                <input type="number" name="value" id="value" value="100"/>
 
                 <!-- submit button -->
                 <button type="submit">Submit Purchase</button>
@@ -49,6 +49,9 @@
             $sql = "SELECT * FROM purchases";
             $result = mysqli_query($link, $sql) or die(mysqli_error($link));
             print("<h2>Recorded Purchases</h2>");
+
+            // Total Purchases counter
+            $total = 0;
 
             // Recorded Purchases
             while($row = mysqli_fetch_array($result)){
@@ -63,12 +66,16 @@
                 } elseif ($row['purchase_category'] == 4){
                     $cat = "Other";
                 }
+                $total += $row['purchase_value'];
                 echo "<div class='purchase'>";
                 echo "<a href='delete.php?id=" . $row['purchase_id'] . "'><button class='btnDelete'>Delete</button></a>";
                 echo "<strong>" . $cat . "</strong>";
-                echo "<p>" . $row['purchase_details'] . "</p>Amount: " . $row['purchase_value'] . "\nDate of Purchase: " . $row['purchase_date'];
+                echo "<p>" . $row['purchase_details'] . "</p>Amount: $" . $row['purchase_value'] . ", Date of Purchase: " . $row['purchase_date'];
                 echo "</div>";
             }
+            echo "<div>";
+            echo "<strong>Total spending: $" . $total . "<strong>";
+            echo "</div>";
             ?>
         </div>
     </body>
