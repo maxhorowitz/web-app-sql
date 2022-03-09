@@ -3,7 +3,7 @@
 $user = 'root';
 $password = 'root';
 $db = 'purchases';
-$host = 'localhost';
+$host = '34.89.55.158';
 $port = 8889;
 
 $link = mysqli_init();
